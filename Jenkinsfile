@@ -1,4 +1,4 @@
-def GIT_STATUE = getGitChanges()
+// def GIT_STATUE = getGitChanges()
 
 pipeline {
     agent any
