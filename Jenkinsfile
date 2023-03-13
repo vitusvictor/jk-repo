@@ -1,4 +1,4 @@
-GIT_STATUE = getGitChange()
+GIT_STATUE = getGitChanges()
 
 pipeline {
     agent any
