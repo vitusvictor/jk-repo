@@ -28,6 +28,10 @@ pipeline {
         booleanParam(name: "dockerBuild", defaultValue: true, description: "docker build description")
     }
 
+    triggers {
+        pollSCM "* * * * *"
+    }
+
     stages {
         stage("Maven build and test stage") {
             when {
