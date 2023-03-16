@@ -1,5 +1,4 @@
 // def GIT_STATUE = getGitChanges()
-
 // perform mvn clean install
 // package as docker
 // deploy to docker hub
