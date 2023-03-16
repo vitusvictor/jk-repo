@@ -4,6 +4,9 @@
 // deploy to docker hub
 // deploy to some host platform
 
+// run a container off the image
+// include docker details as username and password secrets
+//
 pipeline {
     agent any
 
@@ -40,25 +43,31 @@ pipeline {
         }
 
         stage("Docker image build stage") {
-                    when {
-                        expression {
-                            params.dockerBuild
-                        }
-                    }
-
-                    steps {
-                        echo "building docker image... "
-                        sh "docker build -t vitusvictor/jk-repo ."
-                    }
+            when {
+                expression {
+                    params.dockerBuild
                 }
+            }
 
-        stage("Push docker image stage") {
             steps {
-                echo "pushing docker image... "
-                sh "docker login -u vitusvictor -p ${DOCKERHUB_PASSWORD}"
-                sh "docker push vitusvictor/jk-repo"
+                echo "building docker image... "
+                sh "docker build -t vitusvictor/jk-repo ."
             }
         }
+
+        stage("Run docker image") {
+            steps {
+                sh "docker run -d --name jk-repo-container -p 8080:8082 jk-repo"
+            }
+        }
+
+//         stage("Push docker image stage") {
+//             steps {
+//                 echo "pushing docker image... "
+//                 sh "docker login -u vitusvictor -p ${DOCKERHUB_PASSWORD}"
+//                 sh "docker push vitusvictor/jk-repo"
+//             }
+//         }
 
         stage("Deploy stage") {
             steps {
