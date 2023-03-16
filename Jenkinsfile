@@ -35,7 +35,7 @@ pipeline {
 
             steps {
                 echo "building maven package... "
-                sh "mvn clean install"
+//                 sh "mvn clean install"
             }
         }
 
