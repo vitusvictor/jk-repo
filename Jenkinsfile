@@ -61,7 +61,7 @@ pipeline {
 
         stage("Run docker image") {
             steps {
-                sh "docker run -d --name jk-repo-container -p 8080:8082 jk-repo"
+                sh "docker run -d --name jk-repo-container -p 8080:8082 vitusvictor/jk-repo"
             }
         }
 
